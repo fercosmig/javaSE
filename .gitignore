@@ -2,6 +2,7 @@ target
 bin
 .project
 .settings
+README.md
 
 # Compiled class file
 *.class
