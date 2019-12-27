@@ -14,10 +14,10 @@ import java.util.Calendar;
  * @file calendar.DifferenceBetweenDates.java
  */
 public class DifferenceBetweenDates {
-	private static final float SECONDS_IN_MILLISECONDS = 1000;
-	private static final float MINUTES_IN_MILLISECONDS = 60000;
-	private static final float HOURS_IN_MILLISECONDS = 3600000;
-	private static final float DAYS_IN_MILLISECONDS = 86400000;
+	private static final long MILLISECONDS_IN_ONE_SECOND = 1000;
+	private static final long MILLISECONDS_IN_ONE_MINUTE = 60 * 1000; // 60,000
+	private static final long MILLISECONDS_IN_ONE_HOUR = 60 * 60 * 1000; // 3,600,000
+	private static final long MILLISECONDS_IN_ONE_DAY = 24 * 60 * 60 * 1000; // 86,400,000
 
 	/**
 	 * @param args
@@ -29,37 +29,36 @@ public class DifferenceBetweenDates {
 		startDate.set(Calendar.MILLISECOND, 0);
 
 		Calendar endDate = Calendar.getInstance();
-		//endDate.set(2019, 11, 26, 15, 0, 0);
-		//endDate.set(Calendar.MILLISECOND, 0);
-		
+		// endDate.set(2019, 11, 26, 15, 0, 0);
+		// endDate.set(Calendar.MILLISECOND, 0);
 
 		NumberFormat nf = NumberFormat.getInstance();
 		nf.setMaximumFractionDigits(0);
 
 		String pattern = "EEE, MMM dd, yyyy HH:mm:ss";
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-		
+
 		System.out.println("Data inicial: " + sdf.format(startDate.getTime()));
-		System.out.println("Data Final: "+ sdf.format(endDate.getTime()));
-		
+		System.out.println("Data Final: " + sdf.format(endDate.getTime()));
+
 		long sd = startDate.getTimeInMillis();
 		long ed = endDate.getTimeInMillis();
 
 		long diffInMillis = ed - sd;
 		System.out.println("A diferença entre as datas é de " + diffInMillis + " milisegundos.");
 
-		float days = diffInMillis / DAYS_IN_MILLISECONDS;
-		float restDays = diffInMillis % DAYS_IN_MILLISECONDS;
-		
-		float hours = restDays / HOURS_IN_MILLISECONDS;
-		float restHours = restDays % HOURS_IN_MILLISECONDS;
+		float days = diffInMillis / MILLISECONDS_IN_ONE_DAY;
+		float restDays = diffInMillis % MILLISECONDS_IN_ONE_DAY;
 
-		float minutes = restHours / MINUTES_IN_MILLISECONDS;
-		float restMinutes = restHours % MINUTES_IN_MILLISECONDS;
+		float hours = restDays / MILLISECONDS_IN_ONE_HOUR;
+		float restHours = restDays % MILLISECONDS_IN_ONE_HOUR;
 
-		float seconds = restMinutes / SECONDS_IN_MILLISECONDS;
+		float minutes = restHours / MILLISECONDS_IN_ONE_MINUTE;
+		float restMinutes = restHours % MILLISECONDS_IN_ONE_MINUTE;
+
+		float seconds = restMinutes / MILLISECONDS_IN_ONE_SECOND;
 		@SuppressWarnings("unused")
-		float restSeconds = restMinutes % SECONDS_IN_MILLISECONDS;
+		float restSeconds = restMinutes % MILLISECONDS_IN_ONE_SECOND;
 
 		String msg = "A diferença entre as datas acima é: ";
 		msg += nf.format(days) + " dias, ";
@@ -68,7 +67,7 @@ public class DifferenceBetweenDates {
 		msg += nf.format(seconds) + " segundos.";
 
 		System.out.println(msg);
-		
+
 		// float diffInSeconds = diffInMillis / 1000;
 		// System.out.println(diffInSeconds);
 		// float diffInMinutes = diffInMillis / (60 * 1000);
