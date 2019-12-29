@@ -57,6 +57,7 @@ public class CalendarTests {
 		c.set(Calendar.HOUR_OF_DAY, 16);
 		c.set(Calendar.MINUTE, 36);
 		c.set(Calendar.SECOND, 25);
+		c.set(Calendar.MILLISECOND, 0);
 		System.out.println(c.getTime());
 	}
 
