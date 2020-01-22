@@ -38,7 +38,7 @@ public class FindOutTheNumber {
 			} else if (palpite < numberSorted) {
 				System.out.println("Hummmmmmmmm, muito baixo,  tente um número maior!");
 			} else if (palpite == numberSorted) {
-				System.out.println("Parabéns, você acertou, foram necessárias " + quantity + " tentativas");
+				System.out.println("Parabéns, você acertou, foram necessárias " + quantity + " tentativas.");
 				win = true;
 			}
 
